@@ -1,0 +1,17 @@
+schemaVersion: "1.0"
+name: backend
+projectType: django
+build:
+  commands:
+    - pip install -r requirements.txt
+run:
+  command: gunicorn backend.wsgi:application --bind 0.0.0.0:8000
+endpoints:
+  - name: rest-api
+    displayName: REST API
+    service:
+      basePath: /
+      port: 8000
+    type: REST
+    networkVisibilities:
+      - Public
