@@ -1,0 +1,23 @@
+schema_version: 1.2
+type: service
+name: django-backend
+project: django-react-notes
+
+properties:
+  container:
+    port: 8000
+    build:
+      dockerfile: ../Dockerfile
+
+endpoints:
+  - name: backend-api
+    port: 8000
+    type: REST
+    context: /
+    network_visibility:
+      - public
+      - project
+    security:
+      - type: apiKey
+        name: api-key
+        location: header
