@@ -1,22 +1,19 @@
 schemaVersion: "1.2"
-type: web
+type: service
 name: backend
-projectType: django
+project: django-react
 
-build:
-  commands:
-    - pip install -r requirements.txt
-
-run:
-  command: gunicorn backend.wsgi:application --bind 0.0.0.0:8000
+properties:
+  container:
+    port: 8000
 
 endpoints:
   - name: rest-api
     displayName: REST API
     type: REST
-    service:
-      basePath: /
-      port: 8000
     networkVisibilities:
       - Public
       - Project
+    service:
+      basePath: /
+      port: 8000
