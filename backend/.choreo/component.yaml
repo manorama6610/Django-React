@@ -11,9 +11,11 @@ properties:
 
 build:
   command: "pip install -r requirements.txt"
+  workingDir: "/"  # <-- Make sure Choreo builds from repo root
 
 run:
-  command: "python manage.py migrate && gunicorn backend.wsgi:application --bind 0.0.0.0:8000 --timeout 120"
+  command: "python backend/manage.py migrate && gunicorn backend.wsgi:application --bind 0.0.0.0:8000 --timeout 120"
+  workingDir: "/"  # <-- Run commands from repo root
 
 endpoints:
   - name: rest-api
@@ -25,3 +27,4 @@ endpoints:
     service:
       basePath: /
       port: 8000
+
