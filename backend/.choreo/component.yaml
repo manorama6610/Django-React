@@ -7,6 +7,12 @@ properties:
   container:
     port: 8000
 
+build:
+  command: "pip install -r requirements.txt"
+
+run:
+  command: "gunicorn backend.wsgi:application --bind 0.0.0.0:8000 --timeout 120"
+
 endpoints:
   - name: rest-api
     displayName: REST API
